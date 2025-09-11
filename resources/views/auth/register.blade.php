@@ -39,8 +39,10 @@
                 <i class="fas fa-lock text-blue-600 mr-2"></i>
                 Password
             </label>
-            <input id="password" type="password" name="password" required autocomplete="new-password"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            <div class="relative">
+                <input id="password" type="password" name="password" required autocomplete="new-password"
+                       class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -50,8 +52,10 @@
                 <i class="fas fa-lock text-blue-600 mr-2"></i>
                 Konfirmasi Password
             </label>
-            <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
-                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            <div class="relative">
+                <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
+                       class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 

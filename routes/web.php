@@ -14,7 +14,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/categories/income', [CategoryController::class, 'getPemasukan'])->name('categories.income');
-    Route::get('/categories/expense', [CategoryController::class, 'getPengeluaran'])->name('categories.expense');
+Route::get('/categories/expense', [CategoryController::class, 'getPengeluaran'])->name('categories.expense');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
