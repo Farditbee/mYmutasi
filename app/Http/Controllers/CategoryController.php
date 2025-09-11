@@ -12,9 +12,17 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $categories = Category::all();
+        $perPage = $request->get('per_page', 10);
+        
+        if (!in_array($perPage, [10, 15, 25, 50])) {
+            $perPage = 10;
+        }
+        
+        $categories = Category::paginate($perPage);
+        
+        $categories->appends($request->query());
 
         return view('categories.index', compact('categories'));
     }
