@@ -20,6 +20,12 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="inline-flex items-center px-3 py-2 mr-3 border border-transparent text-sm leading-4 font-medium rounded-full text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <i id="theme-icon" class="fas fa-palette text-lg"></i>
+                    <span class="ml-2 hidden md:block" id="theme-text">Tema</span>
+                </button>
+                
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -80,6 +86,14 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <!-- Theme Toggle for Mobile -->
+                <div class="px-4 py-2">
+                    <button id="theme-toggle-mobile" class="w-full inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none transition-all duration-300 ease-in-out">
+                        <i id="theme-icon-mobile" class="fas fa-palette text-lg mr-3"></i>
+                        <span id="theme-text-mobile">Ganti Tema</span>
+                    </button>
+                </div>
+                
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

@@ -1,3 +1,196 @@
+/* Import Google Fonts for Cartoon Theme */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Cartoon Theme Styles */
+.cartoon-theme {
+    /* Background gradients */
+    --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --bg-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --bg-warning: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --bg-danger: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --bg-card: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    
+    /* Text colors */
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-accent: #e53e3e;
+    
+    /* Border radius */
+    --border-radius: 20px;
+    --border-radius-lg: 30px;
+    
+    /* Shadows */
+    --shadow-cartoon: 0 8px 32px rgba(31, 38, 135, 0.37);
+    --shadow-hover: 0 12px 40px rgba(31, 38, 135, 0.5);
+}
+
+.cartoon-theme {
+    font-family: 'Nunito', sans-serif;
+}
+
+.cartoon-theme h1,
+.cartoon-theme h2,
+.cartoon-theme h3,
+.cartoon-theme h4,
+.cartoon-theme h5,
+.cartoon-theme h6 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--text-primary);
+}
+
+/* Cartoon Navigation */
+.cartoon-theme nav {
+    background: var(--bg-primary) !important;
+    border: none !important;
+    box-shadow: var(--shadow-cartoon);
+}
+
+.cartoon-theme nav button,
+.cartoon-theme nav a {
+    color: white !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cartoon-theme nav button:hover,
+.cartoon-theme nav a:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Cartoon Cards */
+.cartoon-theme .bg-white {
+    background: var(--bg-card) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-cartoon) !important;
+    border: 3px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.cartoon-theme .bg-white:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover) !important;
+}
+
+/* Cartoon Buttons */
+.cartoon-theme button,
+.cartoon-theme .btn {
+    border-radius: var(--border-radius) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cartoon-theme .bg-blue-500,
+.cartoon-theme .bg-blue-600 {
+    background: var(--bg-success) !important;
+    border: none !important;
+}
+
+.cartoon-theme .bg-red-500,
+.cartoon-theme .bg-red-600 {
+    background: var(--bg-danger) !important;
+    border: none !important;
+}
+
+.cartoon-theme .bg-green-500,
+.cartoon-theme .bg-green-600 {
+    background: var(--bg-warning) !important;
+    border: none !important;
+}
+
+.cartoon-theme button:hover,
+.cartoon-theme .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Cartoon Forms */
+.cartoon-theme input,
+.cartoon-theme select,
+.cartoon-theme textarea {
+    border-radius: var(--border-radius) !important;
+    border: 3px solid rgba(102, 126, 234, 0.3) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.3s ease;
+}
+
+.cartoon-theme input:focus,
+.cartoon-theme select:focus,
+.cartoon-theme textarea:focus {
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+    transform: scale(1.02);
+}
+
+/* Cartoon Tables */
+.cartoon-theme table {
+    border-radius: var(--border-radius) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow-cartoon);
+}
+
+.cartoon-theme th {
+    background: var(--bg-secondary) !important;
+    color: white !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cartoon-theme tr:nth-child(even) {
+    background: rgba(102, 126, 234, 0.1) !important;
+}
+
+.cartoon-theme tr:hover {
+    background: rgba(102, 126, 234, 0.2) !important;
+    transform: scale(1.01);
+}
+
+/* Removed animations for better UX */
+
+/* Cartoon Background */
+.cartoon-theme .min-h-screen {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+    background-attachment: fixed;
+}
+
+/* Cartoon Theme Toggle Button */
+.cartoon-theme #theme-toggle,
+.cartoon-theme #theme-toggle-mobile {
+    background: var(--bg-warning) !important;
+    color: white !important;
+    border: 3px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.cartoon-theme #theme-toggle:hover,
+.cartoon-theme #theme-toggle-mobile:hover {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+/* Select2 Cartoon Styling */
+.cartoon-theme .select2-container--default .select2-selection--single {
+    border: 3px solid rgba(102, 126, 234, 0.3) !important;
+    border-radius: var(--border-radius) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.cartoon-theme .select2-dropdown {
+    border: 3px solid rgba(102, 126, 234, 0.3) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-cartoon) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cartoon-theme {
+        --border-radius: 15px;
+        --border-radius-lg: 20px;
+    }
+}

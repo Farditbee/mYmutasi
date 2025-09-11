@@ -83,5 +83,113 @@
         @endif
         
         @stack('scripts')
+        
+        <!-- Theme Toggle Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+                const themeIcon = document.getElementById('theme-icon');
+                const themeIconMobile = document.getElementById('theme-icon-mobile');
+                const themeText = document.getElementById('theme-text');
+                const themeTextMobile = document.getElementById('theme-text-mobile');
+                const body = document.body;
+                
+                // Check for saved theme preference or default to 'normal'
+                const currentTheme = localStorage.getItem('theme') || 'normal';
+                
+                // Apply saved theme
+                if (currentTheme === 'cartoon') {
+                    body.classList.add('cartoon-theme');
+                    updateThemeUI('cartoon');
+                } else {
+                    body.classList.remove('cartoon-theme');
+                    updateThemeUI('normal');
+                }
+                
+                // Theme toggle function
+                function toggleTheme() {
+                    if (body.classList.contains('cartoon-theme')) {
+                        // Switch to normal theme
+                        body.classList.remove('cartoon-theme');
+                        localStorage.setItem('theme', 'normal');
+                        updateThemeUI('normal');
+                        
+                        // Show success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Tema Diubah!',
+                            text: 'Tema normal telah diaktifkan',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            toast: true,
+                            position: 'top-end'
+                        });
+                    } else {
+                        // Switch to cartoon theme
+                        body.classList.add('cartoon-theme');
+                        localStorage.setItem('theme', 'cartoon');
+                        updateThemeUI('cartoon');
+                        
+                        // Show fun success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: '🎨 Tema Alter Aktif!',
+                            text: 'Selamat datang di dunia yang penuh warna! 🌈',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            toast: true,
+                            position: 'top-end',
+                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            color: 'white'
+                        });
+                    }
+                }
+                
+                // Update theme UI elements
+                function updateThemeUI(theme) {
+                    if (theme === 'cartoon') {
+                        if (themeIcon) {
+                            themeIcon.className = 'fas fa-magic text-lg';
+                        }
+                        if (themeIconMobile) {
+                            themeIconMobile.className = 'fas fa-magic text-lg mr-3';
+                        }
+                        if (themeText) {
+                            themeText.textContent = 'Alter';
+                        }
+                        if (themeTextMobile) {
+                            themeTextMobile.textContent = 'Mode Alter';
+                        }
+                    } else {
+                        if (themeIcon) {
+                            themeIcon.className = 'fas fa-palette text-lg';
+                        }
+                        if (themeIconMobile) {
+                            themeIconMobile.className = 'fas fa-palette text-lg mr-3';
+                        }
+                        if (themeText) {
+                            themeText.textContent = 'Tema';
+                        }
+                        if (themeTextMobile) {
+                            themeTextMobile.textContent = 'Ganti Tema';
+                        }
+                    }
+                }
+                
+                // Add event listeners
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', toggleTheme);
+                }
+                
+                if (themeToggleMobile) {
+                    themeToggleMobile.addEventListener('click', toggleTheme);
+                }
+                
+                // Removed automatic animations for better UX
+                
+                // Removed Konami code easter egg to avoid animations
+            });
+        </script>
     </body>
 </html>
