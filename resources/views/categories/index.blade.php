@@ -96,14 +96,20 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div class="flex space-x-2">
                                                     <a href="{{ route('categories.edit', $category) }}"
-                                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                                                        title="Edit Kategori">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
 
                                                     <form action="{{ route('categories.destroy', $category) }}"
                                                         method="POST" class="inline delete-form">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button"
-                                                            class="text-red-600 hover:text-red-900 delete-btn">Hapus</button>
+                                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200 delete-btn"
+                                                            title="Hapus Kategori">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </td>

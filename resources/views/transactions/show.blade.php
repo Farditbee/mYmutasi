@@ -97,20 +97,26 @@
 
                     <!-- Action Buttons -->
                     <div class="mt-8 flex items-center justify-between">
+                        <!-- Delete Button -->
                         <form action="{{ route('transactions.destroy', $transaction) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                Hapus Transaksi
+                            <button type="submit" class="inline-flex items-center px-3 py-2 bg-red-500 hover:bg-red-700 text-white font-medium rounded-lg transition-colors duration-200" title="Hapus Transaksi">
+                                <i class="fas fa-trash mr-2"></i>
+                                Hapus
                             </button>
                         </form>
                         
-                        <div class="flex space-x-2">
-                            <a href="{{ route('transactions.edit', $transaction) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Edit Transaksi
+                        <div class="flex space-x-3">
+                            <!-- Edit Button -->
+                            <a href="{{ route('transactions.edit', $transaction) }}" class="inline-flex items-center px-3 py-2 bg-blue-500 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200" title="Edit Transaksi">
+                                <i class="fas fa-edit mr-2"></i>
+                                Edit
                             </a>
-                            <a href="{{ route('transactions.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                                Kembali ke Daftar
+                            <!-- Back Button -->
+                            <a href="{{ route('transactions.index') }}" class="inline-flex items-center px-3 py-2 bg-gray-500 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors duration-200" title="Kembali ke Daftar">
+                                <i class="fas fa-arrow-left mr-2"></i>
+                                Kembali
                             </a>
                         </div>
                     </div>

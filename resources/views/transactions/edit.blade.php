@@ -108,10 +108,12 @@
 
                         <!-- Submit Buttons -->
                         <div class="flex items-center justify-end space-x-3">
-                            <a href="{{ route('transactions.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                            <a href="{{ route('transactions.index') }}" class="inline-flex items-center px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg transition-colors duration-200" title="Batal">
+                                <i class="fas fa-times mr-2"></i>
                                 Batal
                             </a>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button type="submit" class="inline-flex items-center px-3 py-2 bg-blue-500 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200" title="Update Transaksi">
+                                <i class="fas fa-check mr-2"></i>
                                 Update Transaksi
                             </button>
                         </div>

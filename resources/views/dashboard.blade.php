@@ -32,9 +32,7 @@
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="p-2 bg-green-100 rounded-full">
-                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
+                                <i class="fas fa-arrow-up text-green-600 text-xl"></i>
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Pemasukan</p>
@@ -48,9 +46,7 @@
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="p-2 bg-red-100 rounded-full">
-                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                                </svg>
+                                <i class="fas fa-arrow-down text-red-600 text-xl"></i>
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Pengeluaran</p>
@@ -64,9 +60,7 @@
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="p-2 bg-blue-100 rounded-full">
-                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                </svg>
+                                <i class="fas fa-wallet text-blue-600 text-xl"></i>
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Saldo</p>
@@ -169,7 +163,8 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">Belum ada transaksi</h3>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Mulai dengan menambahkan transaksi pertama Anda.</p>
                             <div class="mt-6">
-                                <a href="{{ route('transactions.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <a href="{{ route('transactions.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" title="Tambah Transaksi">
+                                    <i class="fas fa-plus mr-2"></i>
                                     Tambah Transaksi
                                 </a>
                             </div>
