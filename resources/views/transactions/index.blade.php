@@ -74,13 +74,8 @@
                         </div>
                         <div>
                             <label for="category_id" class="block text-sm font-medium text-gray-700">Kategori</label>
-                            <select name="category_id" id="category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                <option value="">Semua Kategori</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }} ({{ ucfirst($category->type) }})
-                                    </option>
-                                @endforeach
+                            <select name="category_id" id="category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" disabled>
+                                <option value="">Pilih tipe terlebih dahulu</option>
                             </select>
                         </div>
                         <div>
@@ -193,4 +188,65 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeSelect = document.getElementById('type');
+            const categorySelect = document.getElementById('category_id');
+            const selectedCategoryId = '{{ request("category_id") }}';
+
+            // Initialize category dropdown based on current type
+            if (typeSelect.value) {
+                loadCategories(typeSelect.value, selectedCategoryId);
+            }
+
+            // Handle type change
+            typeSelect.addEventListener('change', function() {
+                const selectedType = this.value;
+                
+                if (selectedType === '') {
+                    // Reset category dropdown when no type selected
+                    categorySelect.innerHTML = '<option value="">Pilih tipe terlebih dahulu</option>';
+                    categorySelect.disabled = true;
+                } else {
+                    // Load categories for selected type
+                    loadCategories(selectedType);
+                }
+            });
+
+            function loadCategories(type, selectedId = '') {
+                categorySelect.disabled = true;
+                categorySelect.innerHTML = '<option value="">Loading...</option>';
+
+                // Determine the endpoint based on type
+                const endpoint = type === 'income' ? '/categories/income' : '/categories/expense';
+
+                fetch(endpoint)
+                    .then(response => response.json())
+                    .then(data => {
+                        categorySelect.innerHTML = '<option value="">Semua Kategori</option>';
+                        
+                        data.forEach(category => {
+                            const option = document.createElement('option');
+                            option.value = category.id;
+                            option.textContent = category.name;
+                            
+                            // Set selected if this was the previously selected category
+                            if (selectedId && selectedId == category.id) {
+                                option.selected = true;
+                            }
+                            
+                            categorySelect.appendChild(option);
+                        });
+                        
+                        categorySelect.disabled = false;
+                    })
+                    .catch(error => {
+                        console.error('Error loading categories:', error);
+                        categorySelect.innerHTML = '<option value="">Error loading categories</option>';
+                        categorySelect.disabled = false;
+                    });
+            }
+        });
+    </script>
 </x-app-layout>
