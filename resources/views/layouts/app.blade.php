@@ -13,6 +13,14 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <!-- Select2 -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -32,5 +40,45 @@
                 {{ $slot }}
             </main>
         </div>
+        
+        <!-- SweetAlert Messages -->
+        @if(session('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            </script>
+        @endif
+        
+        @if(session('error'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: '{{ session('error') }}',
+                    showConfirmButton: true
+                });
+            </script>
+        @endif
+        
+        @if($errors->any())
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error!',
+                    html: '<ul style="text-align: left;">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
+                    showConfirmButton: true
+                });
+            </script>
+        @endif
+        
+        @stack('scripts')
     </body>
 </html>
