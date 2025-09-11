@@ -53,7 +53,15 @@ class TransactionController extends Controller
      */
     public function create(): View
     {
-        return view('transactions.create');
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        
+        // Calculate totals for balance display
+        $totalIncome = $user->transactions()->income()->sum('amount');
+        $totalExpense = $user->transactions()->expense()->sum('amount');
+        $balance = $totalIncome - $totalExpense;
+        
+        return view('transactions.create', compact('totalIncome', 'totalExpense', 'balance'));
     }
 
     /**
@@ -106,11 +114,19 @@ class TransactionController extends Controller
             abort(403);
         }
         
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        
+        // Calculate totals for balance display
+        $totalIncome = $user->transactions()->income()->sum('amount');
+        $totalExpense = $user->transactions()->expense()->sum('amount');
+        $balance = $totalIncome - $totalExpense;
+        
         $categories = Category::active()->get();
         $incomeCategories = $categories->where('type', 'income')->values();
         $expenseCategories = $categories->where('type', 'expense')->values();
         
-        return view('transactions.edit', compact('transaction', 'categories', 'incomeCategories', 'expenseCategories'));
+        return view('transactions.edit', compact('transaction', 'categories', 'incomeCategories', 'expenseCategories', 'totalIncome', 'totalExpense', 'balance'));
     }
 
     /**

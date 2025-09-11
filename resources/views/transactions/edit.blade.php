@@ -12,6 +12,25 @@
 
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <!-- Balance Summary -->
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-2">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-4 text-gray-900">
+                        <div class="flex items-center justify-center">
+                            <div class="p-2 bg-blue-100 rounded-full">
+                                <i class="fas fa-wallet text-blue-600 text-lg"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-xs font-medium text-gray-500">Saldo</p>
+                                <p class="text-lg font-semibold {{ ($totalIncome - $totalExpense) >= 0 ? 'text-green-600' : 'text-red-600' }}">
+                                    Rp {{ number_format($totalIncome - $totalExpense, 0, ',', '.') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form action="{{ route('transactions.update', $transaction) }}" method="POST" id="transactionForm">
