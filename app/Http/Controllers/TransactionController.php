@@ -36,7 +36,17 @@ class TransactionController extends Controller
             $query->dateRange($request->start_date, $request->end_date);
         }
         
-        $transactions = $query->paginate(15);
+        // Handle pagination per page
+        $perPage = $request->get('per_page', 10);
+        
+        if (!in_array($perPage, [10, 15, 25, 50])) {
+            $perPage = 10;
+        }
+        
+        $transactions = $query->paginate($perPage);
+        
+        // Append query parameters to pagination links
+        $transactions->appends($request->query());
         
         // Calculate totals
         $totalIncome = $user->transactions()->income()->sum('amount');

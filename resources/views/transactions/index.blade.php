@@ -102,6 +102,22 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if($transactions->count() > 0)
+                        <!-- Per Page Selector -->
+                        <div class="mb-4 flex items-center space-x-2">
+                            <label for="per_page" class="text-sm font-medium text-gray-700">
+                                Tampilkan:
+                            </label>
+                            <select id="per_page" name="per_page" 
+                                class="border border-gray-300 rounded-md py-1 text-sm bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                onchange="changePerPage(this.value)">
+                                <option value="10" {{ request('per_page', 10) == 10 ? 'selected' : '' }}>10</option>
+                                <option value="15" {{ request('per_page', 10) == 15 ? 'selected' : '' }}>15</option>
+                                <option value="25" {{ request('per_page', 10) == 25 ? 'selected' : '' }}>25</option>
+                                <option value="50" {{ request('per_page', 10) == 50 ? 'selected' : '' }}>50</option>
+                            </select>
+                            <span class="text-sm text-gray-700">per halaman</span>
+                        </div>
+                        
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
@@ -248,5 +264,12 @@
                     });
             }
         });
+        
+        function changePerPage(perPage) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('per_page', perPage);
+            url.searchParams.delete('page');
+            window.location.href = url.toString();
+        }
     </script>
 </x-app-layout>
