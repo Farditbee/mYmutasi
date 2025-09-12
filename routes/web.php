@@ -24,6 +24,11 @@ Route::middleware('auth')->group(function () {
     // Transaction routes
     Route::resource('transactions', TransactionController::class);
     
+    // Report routes
+    Route::get('/reports', [TransactionController::class, 'reports'])->name('reports.index');
+Route::get('/reports/daily', [TransactionController::class, 'dailyReport'])->name('reports.daily');
+Route::get('/reports/monthly', [TransactionController::class, 'monthlyReport'])->name('reports.monthly');
+    
     // Category routes
     Route::resource('categories', CategoryController::class);
     Route::patch('/categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus'])->name('categories.toggle-status');

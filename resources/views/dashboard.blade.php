@@ -111,7 +111,7 @@
                     </div>
                 </a> --}}
 
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <a href="{{ route('reports.index') }}" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="p-6 text-center">
                         <div class="w-12 h-12 mx-auto mb-4 bg-yellow-100 rounded-full flex items-center justify-center">
                             <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,9 +119,9 @@
                             </svg>
                         </div>
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Laporan</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Segera hadir</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Lihat laporan keuangan</p>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Recent Transactions -->

@@ -15,6 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    
+                    <x-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.*')">
+                        {{ __('Transaksi') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reprots.*')">
+                        {{ __('Laporan') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -76,6 +84,27 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            
+            <x-responsive-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.*')">
+                {{ __('Transaksi') }}
+            </x-responsive-nav-link>
+            
+            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                {{ __('Kategori') }}
+            </x-responsive-nav-link>
+            
+            <!-- Reports Section -->
+            <div class="border-t border-gray-200 dark:border-gray-600 pt-2">
+                <div class="px-4 py-2">
+                    <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Laporan</div>
+                </div>
+                <x-responsive-nav-link :href="route('reports.daily')" :active="request()->routeIs('reports.daily')">
+                    {{ __('Laporan Harian') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('reports.monthly')" :active="request()->routeIs('reports.monthly')">
+                    {{ __('Laporan Bulanan') }}
+                </x-responsive-nav-link>
+            </div>
         </div>
 
         <!-- Responsive Settings Options -->
