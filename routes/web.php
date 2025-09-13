@@ -26,8 +26,9 @@ Route::middleware('auth')->group(function () {
     
     // Report routes
     Route::get('/reports', [TransactionController::class, 'reports'])->name('reports.index');
-Route::get('/reports/daily', [TransactionController::class, 'dailyReport'])->name('reports.daily');
-Route::get('/reports/monthly', [TransactionController::class, 'monthlyReport'])->name('reports.monthly');
+    Route::get('/reports/daily', [TransactionController::class, 'dailyReport'])->name('reports.daily');
+    Route::get('/reports/monthly', [TransactionController::class, 'monthlyReport'])->name('reports.monthly');
+    Route::get('/reports/pengeluaran-by-category', [TransactionController::class, 'getPengeluaranByCategory'])->name('reports.pengeluaran-by-category');
     
     // Category routes
     Route::resource('categories', CategoryController::class);
