@@ -89,7 +89,8 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span class="text-gray-500 sm:text-sm">Rp</span>
                                 </div>
-                                <input type="number" name="amount" id="amount" step="0.01" min="0" value="{{ old('amount') }}" class="pl-12 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="0" required>
+                                <input type="text" name="amount" id="amount" value="{{ old('amount') }}" class="pl-12 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="0" required>
+                                <input type="hidden" name="amount_raw" id="amount_raw" value="{{ old('amount') }}">
                             </div>
                             @error('amount')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -358,12 +359,39 @@
                 updateCategories('');
             }
 
-            // Format amount input
+            // Format amount input with thousand separator
             const amountInput = document.getElementById('amount');
+            const amountRawInput = document.getElementById('amount_raw');
+            
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+            
+            function unformatNumber(str) {
+                return str.replace(/\./g, '');
+            }
+            
             amountInput.addEventListener('input', function() {
-                let value = this.value.replace(/[^0-9.]/g, '');
-                this.value = value;
+                // Remove all non-numeric characters except dots
+                let value = this.value.replace(/[^0-9]/g, '');
+                
+                // Store raw value for form submission
+                amountRawInput.value = value;
+                
+                // Format with thousand separator
+                if (value) {
+                    this.value = formatNumber(value);
+                } else {
+                    this.value = '';
+                }
             });
+            
+            // Initialize formatting if there's an old value
+            if (amountInput.value) {
+                const rawValue = unformatNumber(amountInput.value);
+                amountRawInput.value = rawValue;
+                amountInput.value = formatNumber(rawValue);
+            }
         });
     </script>
     @endpush

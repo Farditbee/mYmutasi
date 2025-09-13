@@ -84,6 +84,7 @@ class TransactionController extends Controller
             'type' => 'required|in:income,expense',
             'category_id' => 'required|exists:categories,id',
             'amount' => 'required|numeric|min:0.01',
+            'amount_raw' => 'nullable|numeric|min:0.01',
             'description' => 'required|string|max:255',
             'notes' => 'nullable|string',
             'transaction_date' => 'required|date',
@@ -94,6 +95,14 @@ class TransactionController extends Controller
             return back()->withErrors(['category_id' => 'Kategori tidak sesuai dengan jenis transaksi.'])->withInput();
         }
 
+        // Use amount_raw if available (from formatted input), otherwise use amount
+        if (isset($validated['amount_raw']) && $validated['amount_raw'] > 0) {
+            $validated['amount'] = $validated['amount_raw'];
+        }
+        
+        // Remove amount_raw from validated data as it's not a database field
+        unset($validated['amount_raw']);
+        
         $validated['user_id'] = Auth::id();
 
         Transaction::create($validated);
@@ -151,6 +160,7 @@ class TransactionController extends Controller
             'type' => 'required|in:income,expense',
             'category_id' => 'required|exists:categories,id',
             'amount' => 'required|numeric|min:0.01',
+            'amount_raw' => 'nullable|numeric|min:0.01',
             'description' => 'required|string|max:255',
             'notes' => 'nullable|string',
             'transaction_date' => 'required|date',
@@ -160,6 +170,14 @@ class TransactionController extends Controller
         if ($category->type !== $validated['type']) {
             return back()->withErrors(['category_id' => 'Kategori tidak sesuai dengan jenis transaksi.'])->withInput();
         }
+
+        // Use amount_raw if available (from formatted input), otherwise use amount
+        if (isset($validated['amount_raw']) && $validated['amount_raw'] > 0) {
+            $validated['amount'] = $validated['amount_raw'];
+        }
+        
+        // Remove amount_raw from validated data as it's not a database field
+        unset($validated['amount_raw']);
 
         $transaction->update($validated);
 
