@@ -114,12 +114,11 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction): View
+    public function show(Request $request, $id): View
     {
-        // Ensure the transaction belongs to the authenticated user
-        if ($transaction->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $transaction = Transaction::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
         return view('transactions.show', compact('transaction'));
     }
@@ -127,11 +126,11 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction): View
+    public function edit(Request $request, $id): View
     {
-        if ($transaction->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $transaction = Transaction::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
         /** @var \App\Models\User $user */
         $user = Auth::user();
@@ -150,11 +149,11 @@ class TransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaction $transaction): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
-        if ($transaction->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $transaction = Transaction::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
         $validated = $request->validate([
             'type' => 'required|in:income,expense',
@@ -188,11 +187,11 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction $transaction): RedirectResponse
+    public function destroy(Request $request, $id): RedirectResponse
     {
-        if ($transaction->user_id !== Auth::id()) {
-            abort(403);
-        }
+        $transaction = Transaction::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
         $transaction->delete();
 

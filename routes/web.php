@@ -22,7 +22,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     // Transaction routes
-    Route::resource('transactions', TransactionController::class);
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
+    Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+    Route::get('/transactions/{id}', [TransactionController::class, 'show'])->name('transactions.show');
+    Route::get('/transactions/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
+    Route::put('/transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update');
+    Route::patch('/transactions/{id}', [TransactionController::class, 'update'])->name('transactions.patch');
+    Route::delete('/transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
     
     // Report routes
     Route::get('/reports', [TransactionController::class, 'reports'])->name('reports.index');
