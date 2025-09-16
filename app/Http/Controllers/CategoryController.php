@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -14,15 +15,20 @@ class CategoryController extends Controller
      */
     public function index(Request $request): View
     {
+        if (Auth::id() !== 1) {
+            abort(403, 'Unauthorized');
+        }
+
         $perPage = $request->get('per_page', 10);
-        
+
         if (!in_array($perPage, [10, 15, 25, 50])) {
             $perPage = 10;
         }
-        
+
         $categories = Category::paginate($perPage);
-        
+
         $categories->appends($request->query());
+
 
         return view('categories.index', compact('categories'));
     }
@@ -61,11 +67,11 @@ class CategoryController extends Controller
             'color' => 'nullable|string|regex:/^#[0-9A-Fa-f]{6}$/',
             'is_active' => 'boolean',
         ]);
-        
+
         $validated['is_active'] = $request->has('is_active');
-        
+
         Category::create($validated);
-        
+
         return redirect()->route('categories.index')
             ->with('success', 'Kategori berhasil ditambahkan.');
     }
@@ -77,7 +83,7 @@ class CategoryController extends Controller
     {
         $transactionCount = $category->transactions()->count();
         $totalAmount = $category->transactions()->sum('amount');
-        
+
         return view('categories.show', compact('category', 'transactionCount', 'totalAmount'));
     }
 
@@ -101,11 +107,11 @@ class CategoryController extends Controller
             'color' => 'nullable|string|regex:/^#[0-9A-Fa-f]{6}$/',
             'is_active' => 'boolean',
         ]);
-        
+
         $validated['is_active'] = $request->has('is_active');
-        
+
         $category->update($validated);
-        
+
         return redirect()->route('categories.index')
             ->with('success', 'Kategori berhasil diperbarui.');
     }
@@ -120,9 +126,9 @@ class CategoryController extends Controller
             return redirect()->route('categories.index')
                 ->with('error', 'Kategori tidak dapat dihapus karena masih memiliki transaksi.');
         }
-        
+
         $category->delete();
-        
+
         return redirect()->route('categories.index')
             ->with('success', 'Kategori berhasil dihapus.');
     }
@@ -133,9 +139,9 @@ class CategoryController extends Controller
     public function toggleStatus(Category $category): RedirectResponse
     {
         $category->update(['is_active' => !$category->is_active]);
-        
+
         $status = $category->is_active ? 'diaktifkan' : 'dinonaktifkan';
-        
+
         return redirect()->route('categories.index')
             ->with('success', "Kategori berhasil {$status}.");
     }
