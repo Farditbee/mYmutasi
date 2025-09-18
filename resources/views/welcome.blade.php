@@ -72,8 +72,8 @@
                 <span class="text-yellow-300">Mudah & Modern</span>
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-                Aplikasi pencatatan keuangan yang membantu Anda mengatur transaksi, 
-                mengkategorikan pengeluaran, dan memantau kesehatan finansial dengan mudah.
+                Aplikasi pencatatan keuangan yang Bantuin kamu buat nyatet transaksi dan pemasukan / pengeluaran, 
+                dan mantau kesehatan finansial dengan mudah, biar sadar hidup jangan boros boros amat.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 @auth
@@ -226,8 +226,7 @@
                         <h3 class="text-xl font-bold">mY Mutasi</h3>
                     </div>
                     <p class="text-gray-400 mb-4">
-                        Aplikasi pencatatan keuangan modern yang membantu Anda 
-                        mengatur dan memantau kesehatan finansial dengan mudah.
+                        Saran dan kritik saya terima untuk kenyamanan user ❤️ bisa info ke whatsapp saya ya, dan kalo ada bug juga bisa segera info cuy (<a style="text-decoration: underline;" target="_blank" href="https://wa.me/6289518775924">0895-1877-5924</a>)
                     </p>
                 </div>
                 
