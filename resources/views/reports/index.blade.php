@@ -140,7 +140,7 @@
             }],
             chart: {
                 height: 400,
-                type: 'line',
+                type: 'bar',
                 toolbar: {
                     show: false
                 }
@@ -149,9 +149,12 @@
             dataLabels: {
                 enabled: false
             },
-            stroke: {
-                curve: 'smooth',
-                width: 3
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                }
             },
             xaxis: {
                 categories: monthlyDailyData.categories,
