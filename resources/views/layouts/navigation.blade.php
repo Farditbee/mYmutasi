@@ -20,7 +20,7 @@
                         {{ __('Transaksi') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reprots.*')">
+                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
                         {{ __('Laporan') }}
                     </x-nav-link>
                 </div>
