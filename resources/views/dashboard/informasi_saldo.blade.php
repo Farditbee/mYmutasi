@@ -7,7 +7,7 @@
                 </div>
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Pemasukan</p>
-                    <p class="text-2xl font-semibold text-green-600">Rp
+                    <p class="text-2xl font-semibold text-green-600 amount-value" data-original="Rp {{ number_format($totalIncome, 0, ',', '.') }}">Rp
                         {{ number_format($totalIncome, 0, ',', '.') }}</p>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Pengeluaran</p>
-                    <p class="text-2xl font-semibold text-red-600">Rp
+                    <p class="text-2xl font-semibold text-red-600 amount-value" data-original="Rp {{ number_format($totalExpense, 0, ',', '.') }}">Rp
                         {{ number_format($totalExpense, 0, ',', '.') }}</p>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Saldo</p>
-                    <p class="text-2xl font-semibold {{ $balance >= 0 ? 'text-green-600' : 'text-red-600' }}">
+                    <p class="text-2xl font-semibold {{ $balance >= 0 ? 'text-green-600' : 'text-red-600' }} amount-value" data-original="Rp {{ number_format($balance, 0, ',', '.') }}">
                         Rp {{ number_format($balance, 0, ',', '.') }}
                     </p>
                 </div>
