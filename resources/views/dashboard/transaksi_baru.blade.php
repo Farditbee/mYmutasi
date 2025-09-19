@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <span
-                            class="font-semibold {{ $transaction->type == 'income' ? 'text-green-600' : 'text-red-600' }}">
+                            class="font-semibold {{ $transaction->type == 'income' ? 'text-green-600' : 'text-red-600' }} amount-value" data-original="{{ $transaction->amount_with_sign }}">
                             {{ $transaction->amount_with_sign }}
                         </span>
                     </div>
